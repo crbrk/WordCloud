@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+</head>
+<body>
+{% load static %}
+
+    <div class="row">
+    <div class="columnform">
+        <h1>
+        HI,
+        ure a fag
+        </h1>
+    <div id="form">
+
+    <form method="post">
+        {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="submit" name="submit">
+            <input type="submit" value="re" name="RECOLOR">
+    </form>
+
+    </div>
+    </div>
+    <div class="column">
+
+    <div id="imagebox" class="square">
+    {% if image %}
+        {{ image|safe }}
+    {% endif %}
+    {% if imageraster %}
+        <img src="{{ imageraster }}">
+    {% endif %}
+    </div>
+    </div>
+
+    </div>
+<script type='text/javascript' src="../static/jscolor.js"></script>
+
+</body>
+</html>
