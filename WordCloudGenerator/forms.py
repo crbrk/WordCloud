@@ -1,8 +1,11 @@
 from django import forms
 from django.conf import settings
 from palettable.colorbrewer.diverging import *
+import os
 
-diverging_maps_with_color_number = (
+
+
+colormaps_choices = (
     #diverging
     ("BrBG", "BrBG"),
     ("PRGn", "PRGn"),
@@ -105,20 +108,17 @@ class ColorWidget(forms.TextInput):
         js = ('../static/jscolor.js',)
 
 
-w = ColorWidget()
 
-#fill validations for fields
 
 class makeit(forms.Form):
-    txt = forms.CharField(widget=forms.Textarea(attrs={'style':'resize:none;'}))
-    background_color = forms.CharField(widget=ColorWidget(attrs={'class':"jscolor {hash:true}"}))
-    figsize_height = forms.IntegerField(required=True)
-    figsize_width = forms.IntegerField(required=True)
-    image_format = forms.ChoiceField(choices=image_format_choices)
-    max_words = forms.IntegerField(required=True)
-    repeat_words = forms.BooleanField(required=False)
-    max_font_size = forms.IntegerField(required=False)
-    font = forms.ChoiceField(choices=fonts)
-    mask = forms.ChoiceField(choices=masks, required=False)
-    colormap = forms.ChoiceField(choices=diverging_maps_with_color_number)
-
+    Words = forms.CharField(widget=forms.Textarea(attrs={'style':'resize:none;'}), required=True)
+    Background_color = forms.CharField(widget=ColorWidget(attrs={'class':"jscolor {hash:true}"}))
+    Height = forms.IntegerField(required=False, min_value=1)
+    Width = forms.IntegerField(required=False, min_value=1)
+    Format = forms.ChoiceField(choices=image_format_choices)
+    Max_words = forms.IntegerField(required=False, min_value=1)
+    Repeat_words = forms.BooleanField(required=False, initial=True)
+    Max_font_size = forms.IntegerField(required=False, min_value=1)
+    Font_type = forms.ChoiceField(choices=fonts)
+    Mask = forms.ChoiceField(choices=masks)
+    Colormap = forms.ChoiceField(choices=colormaps_choices)
