@@ -25,10 +25,31 @@ def resolve_mask(tmp_mask_selection):
     return mask2
 
 
-def what_to_do_with_font_size(tmp_max_font_size,
-                              tmp_mask_selection,
-                              tmp_figsize_h,
-                              hardcoded_dpi=100):
+def resolve_important_numbers(number):
+    number = (number+number+1) if number <= 1 else number
+    return number
+
+
+def resolve_fig_height(tmp_figsize_h):
+    tmp_figsize_h = 4 if tmp_figsize_h is None else tmp_figsize_h
+    return resolve_important_numbers(tmp_figsize_h)
+
+
+def resolve_fig_width(tmp_figsize_w):
+    tmp_figsize_w = 7 if tmp_figsize_w is None else tmp_figsize_w
+    return resolve_important_numbers(tmp_figsize_w)
+
+
+def resolve_max_words(tmp_max_words):
+    tmp_max_words = 100 if tmp_max_words is None else tmp_max_words
+    return resolve_important_numbers(tmp_max_words)
+
+
+
+def resolve_font_size(tmp_max_font_size,
+                      tmp_mask_selection,
+                      tmp_figsize_h,
+                      hardcoded_dpi=100):
 
     check_sent_font = False if tmp_max_font_size is None else True
     check_mask2 = False if resolve_mask(tmp_mask_selection) is None else True
@@ -37,7 +58,7 @@ def what_to_do_with_font_size(tmp_max_font_size,
     if checker == [False, True]:
         return resolve_mask(tmp_mask_selection).shape[0]
     elif checker == [False, False]:
-        return tmp_figsize_h * hardcoded_dpi
+        return resolve_fig_height(tmp_figsize_h) * hardcoded_dpi
     elif checker == [True, True]:
         return tmp_max_font_size
     elif checker == [True, False]:
@@ -56,13 +77,13 @@ def draw_a_word_cloud_with_args_from_form(tmp_figsize_w,
                                           tmp_font,
                                           hardcoded_dpi=100):
 
-    wc = WordCloud(height=tmp_figsize_h * hardcoded_dpi if resolve_mask(tmp_mask_selection) is None else None,
-                   width=tmp_figsize_w * hardcoded_dpi if resolve_mask(tmp_mask_selection) is None else None,
+    wc = WordCloud(height=resolve_fig_height(tmp_figsize_h) * hardcoded_dpi if resolve_mask(tmp_mask_selection) is None else None,
+                   width=resolve_fig_width(tmp_figsize_w) * hardcoded_dpi if resolve_mask(tmp_mask_selection) is None else None,
                    scale=1,
-                   max_words=tmp_max_words,
-                   max_font_size=what_to_do_with_font_size(tmp_max_font_size,
-                                                           tmp_mask_selection,
-                                                           tmp_figsize_h,),
+                   max_words=resolve_max_words(tmp_max_words),
+                   max_font_size=resolve_font_size(tmp_max_font_size,
+                                                   tmp_mask_selection,
+                                                   tmp_figsize_h),
                    font_path=resolve_font_path(tmp_font),
                    background_color=tmp_user_color,
                    repeat=tmp_repeat_words,
