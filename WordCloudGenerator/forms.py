@@ -14,19 +14,11 @@ colormaps_choices = (
     ("RdYlBu", "RdYlBu"),
     ("RdYlGn", "RdYlGn"),
     ("Spectral", "Spectral"),
-    ("coolwarm", "coolwarm"),
-    ("bwr", "bwr"),
-    ("seismic", "seismic"),
-    #cyclic
-    ("twilight", "twilight"),
-    ("twilight_shifted", "twilight_shifted"),
-    ("hsv", "hsv"),
     # uniform seq
     ("viridis", "viridis"),
     ("plasma", "plasma"),
     ("inferno", "inferno"),
     ("magma", "magma"),
-    ("cividis", "cividis"),
     # seq
     ('Greys', 'Greys'),
     ("Purples", "Purples"),
@@ -46,23 +38,7 @@ colormaps_choices = (
     ("PuBuGn", "PuBuGn"),
     ("BuGn", "BuGn"),
     ("YlGn", "YlGn"),
-    # seq 2
-    ("binary", "binary"),
-    ("gist_yarg", "gist_yarg"),
-    ("gist_gray", "gist_gray"),
-    ("gray", "gray"),
-    ("bone", "bone"),
-    ("pink", "pink"),
-    ("spring", "spring"),
-    ("summer", "summer"),
-    ("autumn", "autumn"),
-    ("winter", "winter"),
-    ("cool", "cool"),
-    ("Wistia", "Wistia"),
-    ("hot", "hot"),
-    ("afmhot", "afmhot"),
-    ("gist_heat", "gist_heat"),
-    ("copper", "copper"),
+
 
 )
 
@@ -100,21 +76,41 @@ masks = (
             ('android.png', 'android'),
             ('american-sign-language-interpreting.png',     'american-sign-language-interpreting'),
 ('500px.png', '500px'),
-
+            ('anchor.png', 'anchor'),
+            ('angellist.png', 'angellist'),
+            ('angle-double-down.png', 'angle-double-down'),
+            ('angle-double-left.png', 'angle-double-left'),
+            ('angle-double-right.png', 'angle-double-right'),
+            ('angle-double-up.png', 'angle-double-up'),
+            ('angle-down.png', 'angle-down'),
+            ('angle-left.png', 'angle-left'),
+            ('angle-right.png', 'angle-right'),
+            ('angle-up.png', 'angle-up'),
+            ('apple.png', 'apple'),
+            ('archive.png', 'archive'),
+            ('arrow-circle-down.png', 'arrow-circle-down'),
+            ('arrow-circle-left.png', 'arrow-circle-left'),
+            ('arrow-circle-o-down.png', 'arrow-circle-o-down'),
 
 )
 
 
 fonts = (
-    ('cmb10.ttf', 'cmb10 - np'),
-    ('BPreplay.otf', 'BPreplay - np'),
-    ('AlexBrush-Regular.ttf', 'AlexBrush-Regular - np'),
     ('AmaticBold.ttf', 'AmaticBold'),
     ('AmaticSC-Regular.ttf', 'AmaticSC-Regular'),
     ('DejaVuSans.ttf', 'DejaVuSans'),
-    ('DejaVuSansMono.ttf', 'DejaVuSansMono'),
-    ('DINCondensed-Bold.ttf', 'DINCondensed-Bold - np'),
+    ('DejaVuSansCondensed-Bold.ttf', 'DejaVuSansCondensed-Bold'),
     ('DroidSansMono.ttf', 'DroidSansMono'),
+    ('Heuristica-Regular.otf', "Heuristica-Regular"),
+    ('Heuristica-Bold.otf', 'Heuristica-Bold'),
+    ('KaushanScript-Regular.otf', 'KaushanScript-Regular'),
+    ('LinBiolinum_R.otf', 'LinBiolinum_R'),
+    ('LinBiolinum_RB.otf', 'LinBiolinum_RB'),
+    ('PlayfairDisplay-Regular.otf', 'PlayfairDisplay-Regular'),
+    ('PlayfairDisplay-Italic.otf', 'PlayfairDisplay-Italic'),
+    ('PlayfairDisplay-Bold.otf', 'PlayfairDisplay-Bold'),
+    ('PlayfairDisplay-Black.otf', 'PlayfairDisplay-Black')
+
 )
 
 class ColorWidget(forms.TextInput):
@@ -126,7 +122,7 @@ class ColorWidget(forms.TextInput):
 
 
 class makeit(forms.Form):
-    Words = forms.CharField(widget=forms.Textarea(attrs={'class':'jcf-textarea'}), required=True)
+    Words = forms.CharField(widget=forms.Textarea(attrs={'class':'jcf-textarea', 'style':'resize:none'}), required=True)
     Height = forms.IntegerField(required=False, min_value=1, label="Height")
     Width = forms.IntegerField(required=False, min_value=1)
     Max_words = forms.IntegerField(required=False, min_value=1)
@@ -134,7 +130,7 @@ class makeit(forms.Form):
     Repeat_words = forms.BooleanField(required=False, initial=True)
     Background_color = forms.CharField(widget=ColorWidget(attrs={'class': "jscolor {hash:true}"}))
     Format = forms.ChoiceField(choices=image_format_choices, widget=forms.Select(attrs={'style':'width:100%'}))
-    Font_type = forms.ChoiceField(choices=fonts, widget=forms.Select(attrs={'style':'width:100%'}))
+    Font_type = forms.ChoiceField(choices=fonts, widget=forms.Select(attrs={'class':'fonts','style':'width:100%'}))
     Mask = forms.ChoiceField(choices=masks, widget=forms.Select(attrs={'class':'mask', 'style':'width:100%'}))
-    Colormap = forms.ChoiceField(choices=colormaps_choices, widget=forms.Select(attrs={'style':'width:100%'}))
+    Colormap = forms.ChoiceField(choices=colormaps_choices, widget=forms.Select(attrs={'class':'colormaps','style':'width:100%'}))
 
