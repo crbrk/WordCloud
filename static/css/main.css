@@ -23,16 +23,23 @@ body {
 		margin:.4em 0 .8em 0;
 		padding:0;
 	}
-	img:not(#generated) {
-		margin:10px 0 5px;
-        max-width: 25px;
-        max-height: 25px;
-	}
 
-    img {
+	.colormaps {
+	width: 98%;
+	max-height: 30px;
+
+}
+
+	img:not(#generated):not(.colormaps) {
+		margin:5px 0 5px;
+        max-width: 38px;
+        max-height: 52px;
+	}
+	    img:not(.colormaps) {
     max-width: 800px;
     max-height: 600px;
     }
+
 	#header {
 		clear:both;
 		float:left;
@@ -121,7 +128,7 @@ body {
 	}
 	.doublepage .colleft {
 		right:49%;
-		background:#F5FFFD;
+		background:#fff;
 	}
 	.doublepage .col1 {
 		width:46%;
@@ -142,5 +149,5 @@ body {
 		margin:0;
 	}
 form {
-	width: 357px;
+	width: 520px;
 }
