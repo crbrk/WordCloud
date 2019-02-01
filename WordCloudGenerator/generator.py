@@ -14,7 +14,7 @@ def resolve_font_path(tmp_font):
 
 
 def resolve_mask(tmp_mask_selection):
-    if tmp_mask_selection == 'None':
+    if tmp_mask_selection == 'nomask.png':
         mask2 = None
     else:
         MASK_PATH = os.path.join(str(base_dir) + "/static/masks/" + str(tmp_mask_selection))
@@ -26,7 +26,7 @@ def resolve_mask(tmp_mask_selection):
 
 
 def resolve_important_numbers(number):
-    number = (number+number+1) if number <= 1 else number
+    number = (number+-number+1) if number < 1 else number
     return number
 
 
@@ -88,8 +88,9 @@ def draw_a_word_cloud_with_args_from_form(tmp_figsize_w,
                    background_color=tmp_user_color,
                    repeat=tmp_repeat_words,
                    mask=resolve_mask(tmp_mask_selection),
-                   colormap=tmp_colormap
-                   ).generate(tmp_user_input)
+                   colormap=tmp_colormap,
+                   collocations=True,
+                   regexp=r"[\w']+"
+                   ).generate_from_text(tmp_user_input)
 
-    print(wc)
     return {"wc": wc}
