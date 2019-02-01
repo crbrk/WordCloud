@@ -77,10 +77,10 @@ Wordcloud generator
             <table border="1">
             {{ form.as_table }}
             </table>
-            <input type="submit" value="submit" name="submit">
+            <input type="submit" value="submit" name="GENERATE" class="submit">
         {% if imageraster %}
                 <a href="{{ imageraster }}" download="WordCloud">
-                    <input type="button" value="Download"></a>
+                    <input type="button" value="Download" class="button"></a>
         {% endif %}
     </form>
 
@@ -103,6 +103,10 @@ Wordcloud generator
 <!-- end of colmask-->
 </div>
 
-<div id="footer">2019</div>
+<div id="footer">2019 *** <a href="https://origin.fontawesome.com/">FONT AWESOME</a>***
+    <a href="https://matplotlib.org/">MATPLOTLIB</a>***
+    <a href="https://www.fontsquirrel.com/f">FONT SQUIRREL</a>***
+    <a href="https://github.com/amueller/word_cloud">WORD CLOUD</a>
+</div>
 </body>
 </html>

@@ -1,12 +1,12 @@
 /* line 6, source/sass/image-picker.scss */
 ul.thumbnails.image_picker_selector {
   overflow: auto;
-  max-height: 150px;
+  max-height: 120px;
   list-style-image: none;
   list-style-position: outside;
   list-style-type: none;
   padding: 0px;
-  margin: 0px; }
+  margin: 2px; }
   /* line 15, source/sass/image-picker.scss */
   ul.thumbnails.image_picker_selector ul {
     overflow: auto;
@@ -21,7 +21,7 @@ ul.thumbnails.image_picker_selector {
   }
   /* line 30, source/sass/image-picker.scss */
   ul.thumbnails.image_picker_selector li {
-    margin: 0px 12px 12px 0px;
+    margin: 1px 12px 12px 0px;
     float: left;
   }
     /* line 35, source/sass/image-picker.scss */

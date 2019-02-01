@@ -5,7 +5,7 @@ body {
 		width:100%;
 		background:#fff;
 		min-width:600px;
-		font-size:90%;
+		font-size:85%;
 	}
 	a {
 		color:#369;
@@ -30,6 +30,9 @@ body {
 
 }
 
+	img:not(#generated):not(.colormaps):not(#head_animal){
+		width:1000px;
+	}
 	img:not(#generated):not(.colormaps) {
 		margin:5px 0 5px;
         max-width: 38px;
@@ -39,6 +42,7 @@ body {
     max-width: 800px;
     max-height: 600px;
     }
+
 
 	#header {
 		clear:both;
@@ -50,9 +54,11 @@ body {
 	}
 	#header p,
 	#header h1,
-	#header h2 {
+	#header h2,
+	#header img{
 		padding:.4em 15px 0 15px;
 		margin:0;
+		width: 1000%;
 	}
 	#header ul {
 		clear:left;
@@ -148,6 +154,33 @@ body {
 		padding:10px;
 		margin:0;
 	}
+textarea {
+	width: 98.7%;
+	height: 53%;
+	margin-top: 5px;
+	border-width: 0px;
+
+}
+
 form {
-	width: 520px;
+	width: 71%;
+}
+
+input:not(.submit):not(.button) {
+	width: 100%;
+	border-width: 0px;
+
+}
+
+
+
+label{
+    display: block;
+    min-width: 100%;
+    overflow: hidden;
+
+    top: 0;
+    right: 0;
+    white-space: nowrap;
+
 }

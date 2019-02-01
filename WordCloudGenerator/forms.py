@@ -122,7 +122,7 @@ class ColorWidget(forms.TextInput):
 
 
 class makeit(forms.Form):
-    Words = forms.CharField(widget=forms.Textarea(attrs={'class':'jcf-textarea', 'style':'resize:none'}), required=True)
+    Words = forms.CharField(widget=forms.Textarea(attrs={'class':'jcf-textarea', 'style':'resize:none', 'rows':4, 'cols':15}), required=True)
     Height = forms.IntegerField(required=False, min_value=1, label="Height")
     Width = forms.IntegerField(required=False, min_value=1)
     Max_words = forms.IntegerField(required=False, min_value=1)
