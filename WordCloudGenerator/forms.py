@@ -1,7 +1,5 @@
 from django import forms
-from django.conf import settings
-from palettable.colorbrewer.diverging import *
-import os
+
 
 
 
@@ -70,14 +68,14 @@ colormaps_choices = (
 
 
 image_format_choices = (
-    ('jpeg', 'jpeg'),
     ('png', 'png'),
+    ('jpeg', 'jpeg'),
 
 )
 
 masks = (
-            ('None', 'DONT USE MASK'),
-            ('heartbeat.png', 'serce'),
+            ('nomask.png', 'NO MASK'),
+            ('heartbeat.png', 'heartbeat'),
             ('play.png', 'play'),
             ('comment.png', 'comment'),
             ('bicycle.png', 'bicycle'),
@@ -86,7 +84,24 @@ masks = (
             ('pie-chart.png', 'pie chart'),
             ('question.png', 'question'),
             ('amazon.png', 'amazon'),
-            ('python.png', 'python')
+            ('python.png', 'python'),
+            ('youtube-square.png', 'you-tube'),
+            ('address-book.png', 'address-book'),
+            ('address-book-o.png', 'address-book-o'),
+            ('address-card.png', 'address-card'),
+            ('address-card-o.png', 'address-card-o'),
+            ('adjust.png', 'adjust'),
+            ('adn.png', 'adn'),
+            ('align-center.png', 'align-center'),
+            ('align-justify.png', 'align-justify'),
+            ('align-left.png', 'align-left'),
+            ('align-right.png', 'align-right'),
+            ('ambulance.png', 'ambulance'),
+            ('android.png', 'android'),
+            ('american-sign-language-interpreting.png',     'american-sign-language-interpreting'),
+('500px.png', '500px'),
+
+
 )
 
 
@@ -111,14 +126,15 @@ class ColorWidget(forms.TextInput):
 
 
 class makeit(forms.Form):
-    Words = forms.CharField(widget=forms.Textarea(attrs={'style':'resize:none;'}), required=True)
-    Background_color = forms.CharField(widget=ColorWidget(attrs={'class':"jscolor {hash:true}"}))
-    Height = forms.IntegerField(required=False, min_value=1)
+    Words = forms.CharField(widget=forms.Textarea(attrs={'class':'jcf-textarea'}), required=True)
+    Height = forms.IntegerField(required=False, min_value=1, label="Height")
     Width = forms.IntegerField(required=False, min_value=1)
-    Format = forms.ChoiceField(choices=image_format_choices)
     Max_words = forms.IntegerField(required=False, min_value=1)
-    Repeat_words = forms.BooleanField(required=False, initial=True)
     Max_font_size = forms.IntegerField(required=False, min_value=1)
-    Font_type = forms.ChoiceField(choices=fonts)
-    Mask = forms.ChoiceField(choices=masks)
-    Colormap = forms.ChoiceField(choices=colormaps_choices)
+    Repeat_words = forms.BooleanField(required=False, initial=True)
+    Background_color = forms.CharField(widget=ColorWidget(attrs={'class': "jscolor {hash:true}"}))
+    Format = forms.ChoiceField(choices=image_format_choices, widget=forms.Select(attrs={'style':'width:100%'}))
+    Font_type = forms.ChoiceField(choices=fonts, widget=forms.Select(attrs={'style':'width:100%'}))
+    Mask = forms.ChoiceField(choices=masks, widget=forms.Select(attrs={'class':'mask', 'style':'width:100%'}))
+    Colormap = forms.ChoiceField(choices=colormaps_choices, widget=forms.Select(attrs={'style':'width:100%'}))
+
