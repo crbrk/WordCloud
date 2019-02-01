@@ -12,7 +12,7 @@ class WordCloudGenerator(View):
     template_name = 'index.html'
     form_class = makeit
     form_initials = {
-                     'Words': "Enter\nyour\nwords\nhere",
+                     'Words': "Enter\nwords\nnow",
                      }
 
     def get(self, request):
@@ -54,7 +54,6 @@ class WordCloudGenerator(View):
             string = base64.b64encode(buf.read())
             first_half_of_uri = 'data:image/' + image_format + ';base64,'
             uri = first_half_of_uri + urllib.parse.quote(string)
-            self.current_wc = image
 
             args = {'form': form, 'imageraster': uri,}
             return render(request, self.template_name, args)
