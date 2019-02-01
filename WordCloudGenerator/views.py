@@ -57,4 +57,4 @@ class WordCloudGenerator(View):
 
             args = {'form': form, 'imageraster': uri,}
             return render(request, self.template_name, args)
-
+        return render(request, self.template_name, {'form':form})

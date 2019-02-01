@@ -26,8 +26,11 @@ def resolve_mask(tmp_mask_selection):
 
 
 def resolve_important_numbers(number):
-    number = (number+-number+1) if number < 1 else number
-    return number
+    if not str(number).isnumeric():
+        return 0
+    else:
+        number = (number+-number+1) if number < 1 else number
+        return number
 
 
 def resolve_fig_height(tmp_figsize_h):
@@ -64,6 +67,11 @@ def resolve_font_size(tmp_max_font_size,
     elif checker == [True, False]:
         return tmp_max_font_size
 
+def resolve_input(tmp_user_input):
+    if len(str(tmp_user_input)) >= 0:
+        tmp_user_input = 'need one word'
+        return tmp_user_input
+
 
 def draw_a_word_cloud_with_args_from_form(tmp_figsize_w,
                                           tmp_figsize_h,
@@ -91,6 +99,6 @@ def draw_a_word_cloud_with_args_from_form(tmp_figsize_w,
                    colormap=tmp_colormap,
                    collocations=True,
                    regexp=r"[\w']+"
-                   ).generate_from_text(tmp_user_input)
+                   ).generate_from_text(resolve_input(tmp_user_input))
 
     return {"wc": wc}

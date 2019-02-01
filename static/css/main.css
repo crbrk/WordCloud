@@ -20,7 +20,7 @@ body {
 		padding:0;
 	}
 	p {
-		margin:.4em 0 .8em 0;
+		margin:.2em 0 .4em 0;
 		padding:0;
 	}
 
@@ -29,7 +29,6 @@ body {
 	max-height: 30px;
 
 }
-
 	img:not(#generated):not(.colormaps):not(#head_animal){
 		width:1000px;
 	}
@@ -157,30 +156,38 @@ body {
 textarea {
 	width: 98.7%;
 	height: 53%;
-	margin-top: 5px;
-	border-width: 0px;
+	margin-top: 2px;
+
 
 }
 
 form {
-	width: 71%;
+	width: 51%;
 }
 
 input:not(.submit):not(.button) {
 	width: 100%;
-	border-width: 0px;
 
 }
 
-
+input[type=number]::-webkit-inner-spin-button {
+  cursor: pointer;
+}
 
 label{
     display: block;
     min-width: 100%;
     overflow: hidden;
-
     top: 0;
     right: 0;
     white-space: nowrap;
 
 }
+
+::placeholder {
+  color: darkred;
+	text-align: center;
+  opacity: 1;
+	font-size: 80%
+}
+
