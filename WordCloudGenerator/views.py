@@ -7,14 +7,12 @@ from .forms import makeit
 from .generator import draw_a_word_cloud_with_args_from_form
 
 
+
 class WordCloudGenerator(View):
     template_name = 'index.html'
     form_class = makeit
-    form_initials = {'figsize_height': 5,
-                     'figsize_width': 5,
-                     'txt': "some were born to win some worn born to lose",
-                     'max_words': 100,
-                     'repeat_words': True
+    form_initials = {
+                     'Words': "Enter\nyour\nwords\nhere",
                      }
 
     def get(self, request):
@@ -24,17 +22,17 @@ class WordCloudGenerator(View):
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
-            figsize_w = form.cleaned_data.get('figsize_width')
-            figsize_h = form.cleaned_data.get('figsize_height')
-            mask_selection = form.cleaned_data.get('mask')
-            max_words = form.cleaned_data.get('max_words')
-            max_font_size = form.cleaned_data.get('max_font_size')
-            user_color = form.cleaned_data.get('background_color')
-            repeat_words = form.cleaned_data.get("repeat_words")
-            colormap = form.cleaned_data.get('colormap')
-            user_input = form.cleaned_data.get('txt')
-            font = form.cleaned_data.get('font')
-            image_format = form.cleaned_data.get('image_format')
+            figsize_w = form.cleaned_data.get('Width')
+            figsize_h = form.cleaned_data.get('Height')
+            mask_selection = form.cleaned_data.get('Mask')
+            max_words = form.cleaned_data.get('Max_words')
+            max_font_size = form.cleaned_data.get('Max_font_size')
+            user_color = form.cleaned_data.get('Background_color')
+            repeat_words = form.cleaned_data.get("Repeat_words")
+            colormap = form.cleaned_data.get('Colormap')
+            user_input = form.cleaned_data.get('Words')
+            font = form.cleaned_data.get('Font_type')
+            image_format = form.cleaned_data.get('Format')
 
             wcg = draw_a_word_cloud_with_args_from_form(figsize_w,
                                                         figsize_h,
@@ -56,6 +54,8 @@ class WordCloudGenerator(View):
             string = base64.b64encode(buf.read())
             first_half_of_uri = 'data:image/' + image_format + ';base64,'
             uri = first_half_of_uri + urllib.parse.quote(string)
+            self.current_wc = image
 
-            args = {'form': form, 'imageraster': uri}
+            args = {'form': form, 'imageraster': uri,}
             return render(request, self.template_name, args)
+
