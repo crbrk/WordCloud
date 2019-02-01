@@ -15,19 +15,39 @@
     <script>
 
 		$(document).ready(function(){
-            var pick = $('select.mask > option');
-		    pick.each(function(){
+            var pick_masks = $('select.mask > option');
+		    pick_masks.each(function(){
 				var r = '../static/masks/';
 				var path =  r + this.value;
 		       $(this).attr({'data-img-src': path});
             });
-
-            $("select.mask").imagepicker({
+            var turn_on_masks = $("select.mask");
+            turn_on_masks.imagepicker({
           hide_select : false,
           show_label  : false,
         });
-            var td = $('select.mask').parent();
-            console.log(td);
+            var pick_colormaps = $('select.colormaps > option');
+            pick_colormaps.each(function(){
+                var r = '../static/colormaps/';
+                var path = r + this.value + '.png';
+                $(this).attr({'data-img-src': path, 'data-img-class': 'colormaps'});
+            });
+            var turn_on_colormaps = $("select.colormaps");
+            turn_on_colormaps.imagepicker({
+                hide_select:false
+
+            });
+            var pick_fonts = $('select.fonts > option');
+            pick_fonts.each(function(){
+                var r = '../static/fonts/';
+                var path = r + $(this).html() + '.png';
+                $(this).attr({'data-img-src': path, 'data-img-class': 'colormaps'});
+            });
+            var turn_on_fonts = $("select.fonts");
+            turn_on_fonts.imagepicker({
+                hide_select:false
+
+            });
 });
 
 	</script>
