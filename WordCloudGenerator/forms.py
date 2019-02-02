@@ -1,5 +1,5 @@
 from django import forms
-
+import os
 
 
 
@@ -46,59 +46,32 @@ colormaps_choices = (
 image_format_choices = (
     ('png', 'png'),
     ('jpeg', 'jpeg'),
-
 )
 
-masks = (
-            ('nomask.png', 'NO MASK'),
-            ('heartbeat.png', 'heartbeat'),
-            ('play.png', 'play'),
-            ('comment.png', 'comment'),
-            ('bicycle.png', 'bicycle'),
-            ('area-chart.png', 'area chart'),
-            ('bar-chart.png', 'bar chart'),
-            ('pie-chart.png', 'pie chart'),
-            ('question.png', 'question'),
-            ('amazon.png', 'amazon'),
-            ('python.png', 'python'),
-            ('smile-o.png', 'smile-o'),
-            ('js.png', 'js'),
-            ('django.png', 'django'),
-            ("exclamation-circle.png", "exclamation-circle"),
-            ("handshake-o.png", "handshake-o"),
-            ('youtube-square.png', 'you-tube'),
-            ('address-book.png', 'address-book'),
-            ('address-book-o.png', 'address-book-o'),
-            ('address-card.png', 'address-card'),
-            ('address-card-o.png', 'address-card-o'),
-            ('adjust.png', 'adjust'),
-            ('adn.png', 'adn'),
-            ('align-center.png', 'align-center'),
-            ('align-justify.png', 'align-justify'),
-            ('align-left.png', 'align-left'),
-            ('align-right.png', 'align-right'),
-            ('ambulance.png', 'ambulance'),
-            ('android.png', 'android'),
-            ('american-sign-language-interpreting.png',     'american-sign-language-interpreting'),
-('500px.png', '500px'),
-            ('anchor.png', 'anchor'),
-            ('angellist.png', 'angellist'),
-            ('angle-double-down.png', 'angle-double-down'),
-            ('angle-double-left.png', 'angle-double-left'),
-            ('angle-double-right.png', 'angle-double-right'),
-            ('angle-double-up.png', 'angle-double-up'),
-            ('angle-down.png', 'angle-down'),
-            ('angle-left.png', 'angle-left'),
-            ('angle-right.png', 'angle-right'),
-            ('angle-up.png', 'angle-up'),
-            ('apple.png', 'apple'),
-            ('archive.png', 'archive'),
-            ('arrow-circle-down.png', 'arrow-circle-down'),
-            ('arrow-circle-left.png', 'arrow-circle-left'),
-            ('arrow-circle-o-down.png', 'arrow-circle-o-down'),
+def traverse_masks_static():
+    mother_of_all_tuples = []
+    just_read_the_file_names = os.scandir('static/masks')
+    dirEntries = []
+    for dirEntry in just_read_the_file_names:
+        dirEntries.append(dirEntry)
 
-)
+    mask_file_names = []
+    for file in dirEntries:
+        mask_file_names.append(file.name)
+    mask_file_names.sort()
 
+    dropdown_values = []
+    for file in mask_file_names:
+        dropdown_values.append(file.split('.png')[0])
+
+    for png, not_png in zip(mask_file_names, dropdown_values):
+        mother_of_all_tuples.append((str(png), str(not_png)))
+
+    mother_of_all_tuples = tuple(mother_of_all_tuples)
+    return mother_of_all_tuples
+
+
+traverse_masks_static()
 
 fonts = (
     ('AmaticBold.ttf', 'AmaticBold'),
@@ -136,6 +109,6 @@ class makeit(forms.Form):
     Background_color = forms.CharField(widget=ColorWidget(attrs={'class': "jscolor {hash:true}"}))
     Format = forms.ChoiceField(choices=image_format_choices, widget=forms.Select(attrs={'style':'width:100%'}))
     Font_type = forms.ChoiceField(choices=fonts, widget=forms.Select(attrs={'class':'fonts','style':'width:100%'}))
-    Mask = forms.ChoiceField(choices=masks, widget=forms.Select(attrs={'class':'mask', 'style':'width:100%'}))
+    Mask = forms.ChoiceField(choices=traverse_masks_static(), widget=forms.Select(attrs={'class':'mask', 'style':'width:100%'}))
     Colormap = forms.ChoiceField(choices=colormaps_choices, widget=forms.Select(attrs={'class':'colormaps','style':'width:100%'}))
 
