@@ -71,6 +71,8 @@ def resolve_input(tmp_user_input):
     if len(str(tmp_user_input)) <= 0:
         tmp_user_input = 'need one word'
         return tmp_user_input
+    else:
+        return tmp_user_input
 
 
 def draw_a_word_cloud_with_args_from_form(tmp_figsize_w,
