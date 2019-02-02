@@ -3,7 +3,7 @@ from PIL import Image
 import numpy as np
 from django.conf import settings
 from wordcloud import WordCloud
-
+import re
 
 base_dir = settings.BASE_DIR
 
@@ -68,8 +68,12 @@ def resolve_font_size(tmp_max_font_size,
         return tmp_max_font_size
 
 def resolve_input(tmp_user_input):
+    discover_special_char = re.findall("[$&+,:;=?@#|'<>.^*()%!-]", tmp_user_input)
     if len(str(tmp_user_input)) <= 0:
         tmp_user_input = 'need one word'
+        return tmp_user_input
+    elif discover_special_char and len(str(tmp_user_input)) <= 2:
+        tmp_user_input = 'unallowed characters'
         return tmp_user_input
     else:
         return tmp_user_input
