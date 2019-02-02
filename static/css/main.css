@@ -170,9 +170,7 @@ input:not(.submit):not(.button) {
 
 }
 
-input[type=number]::-webkit-inner-spin-button {
-  cursor: pointer;
-}
+
 
 label{
     display: block;
