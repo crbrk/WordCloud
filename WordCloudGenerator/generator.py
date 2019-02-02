@@ -68,7 +68,7 @@ def resolve_font_size(tmp_max_font_size,
         return tmp_max_font_size
 
 def resolve_input(tmp_user_input):
-    if len(str(tmp_user_input)) >= 0:
+    if len(str(tmp_user_input)) <= 0:
         tmp_user_input = 'need one word'
         return tmp_user_input
 
