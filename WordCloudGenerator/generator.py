@@ -14,7 +14,7 @@ def resolve_font_path(tmp_font):
 
 
 def resolve_mask(tmp_mask_selection):
-    if tmp_mask_selection == 'nomask.png':
+    if tmp_mask_selection == '!nomask.png':
         mask2 = None
     else:
         MASK_PATH = os.path.join(str(base_dir) + "/static/masks/" + str(tmp_mask_selection))
